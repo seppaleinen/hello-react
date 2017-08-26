@@ -1,4 +1,6 @@
-# hello-react
+# Card memory game
+
+Simple game to try out reactjs
 
 ### Rules:
 
