@@ -47,7 +47,7 @@ export default class GameStore {
           if(firstCard.id !== secondCard.id) {
       	    setTimeout(() => {
       	      if(firstCard.src === secondCard.src) {
-      	        this.cards =  this.cards.filter(card => card.src !== firstCard.src)
+      	        this.cards = this.cards.filter(card => card.src !== firstCard.src)
               } else {
                 flippedCards.forEach(card => {
                   card.flip()
