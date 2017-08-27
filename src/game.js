@@ -58,11 +58,9 @@ export default class Game extends React.Component {
   	this.setState({cards: this.duplicatedAndShuffledCards(), flippedCards: []})
   }
 
-  render() {
-    return (
-      <div>
-      	<h1>Card game yo</h1>
-        <div>
+  gameOn = () => {
+  	return (
+  		<div>
           {this.state.cards.map(card => (
             <Card
               id={card.id}
@@ -72,6 +70,23 @@ export default class Game extends React.Component {
               src={card.src} />
           ))}
         </div>
+        )
+  }
+
+  gameWon = () => {
+  	return (
+  			<div>
+  				Go home youre drunk
+  			</div>
+  		)
+  }
+
+  render() {
+    return (
+      <div>
+      	<h1>Card game yo</h1>
+      	{this.gameOn()}
+      	{this.state.cards.length === 0 && this.gameWon()}
         <div>
           <button onClick={this.restart}>Restart game</button>
         </div>
