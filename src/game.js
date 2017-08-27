@@ -30,15 +30,18 @@ export default class Game extends React.Component {
     	return a.map(i => ({id: i + Math.random(), src: i}))
 	}
 	hoy = (card, unflippyflip) => {
-		this.state.flippedCards.push(card)
+		this.state.flippedCards.push({card: card, unflippyflip: unflippyflip})
 		if(this.state.flippedCards.length === 2) {
-			if(this.state.flippedCards[0].src === this.state.flippedCards[1].src) {
-				alert("yay: " + this.state.flippedCards[0].src + ":" + card.src)
+			console.log("CARD: " + card)
+			console.log("STATECARD: " + this.state.flippedCards[1].card)
+			if(this.state.flippedCards[0].card.src === this.state.flippedCards[1].card.src) {
 				let supercards = this.state.cards.filter((item) => item.src !== card.src)
 				this.setState({cards: supercards})
 			} else  {
-				unflippyflip(this.state.flippedCards)
-				//this.setState({flippedCards: []})
+				setTimeout(() => {
+					this.state.flippedCards.forEach(card => {card.unflippyflip()})
+					this.setState({flippedCards: []})
+				}, 200)
 			}
 		}
 	}

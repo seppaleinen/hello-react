@@ -13,8 +13,8 @@ export default class Card extends React.Component {
 	flippyflippy() {
 		this.setState({flippy: !this.state.flippy})
 		console.log("Hejhej " + this.state.flippy)
-		this.props.hoy(this.props.card, (unflippyCards) => {
-			unflippyCards.forEach(card => {card.unflip()})
+		this.props.hoy(this.props.card, (unflippy) => {
+			this.unflip()
 		})
 	}
 	unflip() {
