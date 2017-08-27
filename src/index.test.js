@@ -19,8 +19,8 @@ describe("Testing index", function() {
       </Provider>  
   })
   it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
-  });
+    const div = document.createElement('div')
+    ReactDOM.render(<App />, div)
+  })
 })
 
