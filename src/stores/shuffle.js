@@ -14,6 +14,5 @@ export default array => {
         array[counter] = array[index];
         array[index] = temp;
     }
-
-    return array.map(src => ({id: src + Math.random(), src: src}))
+    return array
 }

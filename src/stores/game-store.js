@@ -10,6 +10,21 @@ const photos = [
   "/images/dog-5.jpg"
 ]
 
+class Card {
+	id
+	src
+	@observable flipped
+
+	constructor(src) {
+		this.id = Math.random()
+		this.src = src
+	}
+
+	@action flip() {
+		this.flipped = !this.flipped
+	}
+}
+
 export default class GameStore {
 	@observable cards = []
 
@@ -18,6 +33,6 @@ export default class GameStore {
 	}
 
 	duplicatedAndShuffledCards = () => (
-      shuffle([...photos, ...photos])
+      shuffle([...photos, ...photos]).map(src => new Card(src))
     )
 }

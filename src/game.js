@@ -56,6 +56,7 @@ export default class Game extends React.Component {
             <Card
               id={card.id}
           	  key={card.id}
+              card={card}
               canFlip={this.state.flippedCards.length < 2}
               onFlip={this.handleCardFlip}
               src={card.src} />
