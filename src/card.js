@@ -4,7 +4,7 @@ import "./card.css"
 import { inject } from "mobx-react"
 
 
-@inject("cardsStore")
+@inject("gameStore")
 export default class Card extends React.Component {
   state = {
     flipped: false

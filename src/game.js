@@ -3,13 +3,13 @@ import Card from "./card"
 import { inject } from "mobx-react"
 
 
-@inject("cardsStore")
+@inject("gameStore")
 export default class Game extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      cards: this.props.cardsStore.cards,
+      cards: this.props.gameStore.cards,
       flippedCards: [],
       flipCount: 0
     }
@@ -46,7 +46,7 @@ export default class Game extends React.Component {
   }
 
   restart = () => {
-  	this.setState({cards: this.props.cardsStore.duplicatedAndShuffledCards(), flippedCards: [], flipCount: 0})
+  	this.setState({cards: this.props.gameStore.duplicatedAndShuffledCards(), flippedCards: [], flipCount: 0})
   }
 
   gameOn = () => {
@@ -76,7 +76,7 @@ export default class Game extends React.Component {
   }
 
   render() {
-    const { cards } = this.props.cardsStore
+    const { cards } = this.props.gameStore
     return (
       <div>
       	<h1>Card Game Yo</h1>

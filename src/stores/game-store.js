@@ -10,7 +10,7 @@ const photos = [
   "/images/dog-5.jpg"
 ]
 
-export default class CardsStore {
+export default class GameStore {
 	@observable cards = []
 
 	constructor() {

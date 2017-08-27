@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Game from "./game"
 import { Provider } from "mobx-react"
-import CardsStore from "./stores/cards-store"
+import GameStore from "./stores/game-store"
 
 const stores  = {
-  cardsStore: new CardsStore()
+  gameStore: new GameStore()
 }
 
 const App = () => 
