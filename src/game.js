@@ -1,6 +1,7 @@
 import React from "react"
 import Card from "./card"
 import shuffle from "./shuffle"
+import { inject } from "mobx-react"
 
 const photos = [
   "/images/dog-1.jpg",
@@ -10,6 +11,7 @@ const photos = [
   "/images/dog-5.jpg"
 ]
 
+@inject("cardsStore")
 export default class Game extends React.Component {
 
   constructor(props) {
@@ -88,7 +90,7 @@ export default class Game extends React.Component {
   render() {
     return (
       <div>
-      	<h1>Card game yo</h1>
+      	<h1>{this.props.cardsStore.header}</h1>
       	{this.gameOn()}
       	{this.state.cards.length === 0 && this.gameWon()}
         <div>

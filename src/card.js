@@ -1,13 +1,17 @@
 import React from "react"
 import classNames from "class-names"
 import "./card.css"
+import { inject } from "mobx-react"
 
+
+@inject("cardsStore")
 export default class Card extends React.Component {
   state = {
     flipped: false
   }
 
   handleClick = () => {
+    this.props.cardsStore.setHeader(this.props.id)
     if (this.props.canFlip) {
       this.setState({ flipped: true })
       this.props.onFlip(this.props.id, this.props.src, this.handleUnflipRequest)
