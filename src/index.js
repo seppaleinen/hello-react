@@ -14,4 +14,4 @@ const App = () =>
     <Game />
   </Provider>
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+export default ReactDOM.render(<App/>, document.getElementById('root') || document.createElement('div'))
