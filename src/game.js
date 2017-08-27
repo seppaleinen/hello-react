@@ -16,7 +16,8 @@ export default class Game extends React.Component {
     super(props)
     this.state = {
       cards: this.duplicatedAndShuffledCards(),
-      flippedCards: []
+      flippedCards: [],
+      flipCount: 0
     }
   }
 
@@ -26,21 +27,22 @@ export default class Game extends React.Component {
 
   handleCardFlip = (id, src, unflipCallback) => {
     const flippedCards = [...this.state.flippedCards, { id, src, unflipCallback }]
-    this.setState({ flippedCards }, this.handleFlippedCardChange)
+    this.setState({ flippedCards, flipCount: this.state.flipCount + 1 }, this.handleFlippedCardChange)
   }
 
   handleFlippedCardChange = () => {
     if (this.state.flippedCards.length === 2) {
-      console.log(this.state.flippedCards[0].id + ":" + this.state.flippedCards[1].id)
-      if(this.state.flippedCards[0].id === this.state.flippedCards[1].id) {
+      const firstCard = this.state.flippedCards[0]
+      const secondCard = this.state.flippedCards[1]
+      if(firstCard.id === secondCard.id) {
       	console.log("Elseif")
       	          this.state.flippedCards.forEach(card => {
             card.unflipCallback()
           })
       	this.setState({flippedCards: []})
-      } else if(this.state.flippedCards[0].src === this.state.flippedCards[1].src) {
+      } else if(firstCard.src === secondCard.src) {
       	setTimeout(() => {
-      	  let filteredCards = this.state.cards.filter(card => card.src !== this.state.flippedCards[0].src)
+      	  let filteredCards = this.state.cards.filter(card => card.src !== firstCard.src)
       	  this.setState({cards: filteredCards, flippedCards: []})
       	}, 1000)
       } else {
@@ -55,7 +57,7 @@ export default class Game extends React.Component {
   }
 
   restart = () => {
-  	this.setState({cards: this.duplicatedAndShuffledCards(), flippedCards: []})
+  	this.setState({cards: this.duplicatedAndShuffledCards(), flippedCards: [], flipCount: 0})
   }
 
   gameOn = () => {
@@ -77,6 +79,9 @@ export default class Game extends React.Component {
   	return (
   			<div>
   				Go home youre drunk
+  				{
+  					this.state.flipCount
+  				}
   			</div>
   		)
   }
