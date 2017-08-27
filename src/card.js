@@ -10,7 +10,7 @@ export default class Card extends React.Component {
   handleClick = () => {
     if (this.props.canFlip) {
       this.setState({ flipped: true })
-      this.props.onFlip(this.props.src, this.handleUnflipRequest)
+      this.props.onFlip(this.props.id, this.props.src, this.handleUnflipRequest)
     }
   }
 
