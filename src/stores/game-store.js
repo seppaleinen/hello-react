@@ -40,20 +40,18 @@ export default class GameStore {
 		this.flippedCards.push(card)
 
 		if (this.flippedCards.length === 2) {
-          const firstCard = this.flippedCards[0]
-          const secondCard = this.flippedCards[1]
-          if(firstCard.id === secondCard.id) {
-          	this.flippedCards = []
-          } else {
+	      const flippedCards = this.flippedCards
+          const firstCard = flippedCards[0]
+          const secondCard = flippedCards[1]
+          this.flippedCards = []
+          if(firstCard.id !== secondCard.id) {
       	    setTimeout(() => {
       	      if(firstCard.src === secondCard.src) {
       	        this.cards =  this.cards.filter(card => card.src !== firstCard.src)
-      	        this.flippedCards = []
               } else {
-                this.flippedCards.forEach(card => {
+                flippedCards.forEach(card => {
                   card.flip()
                 })
-                this.flippedCards = []
               }
       	    }, 1000)
         } 
