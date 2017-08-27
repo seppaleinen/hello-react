@@ -33,8 +33,10 @@ export default class Game extends React.Component {
     if (this.state.flippedCards.length === 2) {
       if(this.state.flippedCards[0].src === this.state.flippedCards[1].src) {
       	console.log()
-      	let filteredCards = this.state.cards.filter(card => card.src !== this.state.flippedCards[0].src)
-      	this.setState({cards: filteredCards, flippedCards: []})
+      	setTimeout(() => {
+      	  let filteredCards = this.state.cards.filter(card => card.src !== this.state.flippedCards[0].src)
+      	  this.setState({cards: filteredCards, flippedCards: []})
+      	}, 1000)
       } else {
         setTimeout(() => {
           this.state.flippedCards.forEach(card => {
@@ -53,6 +55,7 @@ export default class Game extends React.Component {
   render() {
     return (
       <div>
+      	<h1>Card game yo</h1>
         <div>
           {this.state.cards.map(card => (
             <Card
