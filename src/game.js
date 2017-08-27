@@ -1,15 +1,7 @@
 import React from "react"
 import Card from "./card"
-import shuffle from "./shuffle"
 import { inject } from "mobx-react"
 
-const photos = [
-  "/images/dog-1.jpg",
-  "/images/dog-2.jpg",
-  "/images/dog-3.jpg",
-  "/images/dog-4.jpg",
-  "/images/dog-5.jpg"
-]
 
 @inject("cardsStore")
 export default class Game extends React.Component {
@@ -17,15 +9,11 @@ export default class Game extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cards: this.duplicatedAndShuffledCards(),
+      cards: this.props.cardsStore.cards,
       flippedCards: [],
       flipCount: 0
     }
   }
-
-  duplicatedAndShuffledCards = () => (
-    shuffle([...photos, ...photos])
-  )
 
   handleCardFlip = (id, src, unflipCallback) => {
     const flippedCards = [...this.state.flippedCards, { id, src, unflipCallback }]
@@ -58,7 +46,7 @@ export default class Game extends React.Component {
   }
 
   restart = () => {
-  	this.setState({cards: this.duplicatedAndShuffledCards(), flippedCards: [], flipCount: 0})
+  	this.setState({cards: this.props.cardsStore.duplicatedAndShuffledCards(), flippedCards: [], flipCount: 0})
   }
 
   gameOn = () => {
@@ -88,11 +76,12 @@ export default class Game extends React.Component {
   }
 
   render() {
+    const { cards } = this.props.cardsStore
     return (
       <div>
-      	<h1>{this.props.cardsStore.header}</h1>
+      	<h1>Card Game Yo</h1>
       	{this.gameOn()}
-      	{this.state.cards.length === 0 && this.gameWon()}
+      	{cards.length === 0 && this.gameWon()}
         <div>
           <button onClick={this.restart}>Restart game</button>
         </div>

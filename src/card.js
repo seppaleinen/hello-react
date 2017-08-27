@@ -11,7 +11,6 @@ export default class Card extends React.Component {
   }
 
   handleClick = () => {
-    this.props.cardsStore.setHeader(this.props.id)
     if (this.props.canFlip) {
       this.setState({ flipped: true })
       this.props.onFlip(this.props.id, this.props.src, this.handleUnflipRequest)
