@@ -24,17 +24,16 @@ export default class Game extends React.Component {
     shuffle([...photos, ...photos])
   )
 
-  handleCardFlip = (photo, unflipCallback) => {
-    const flippedCards = [...this.state.flippedCards, { photo, unflipCallback }]
+  handleCardFlip = (src, unflipCallback) => {
+    const flippedCards = [...this.state.flippedCards, { src, unflipCallback }]
     this.setState({ flippedCards }, this.handleFlippedCardChange)
   }
 
   handleFlippedCardChange = () => {
     if (this.state.flippedCards.length === 2) {
-    	console.log(this.state.flippedCards[0].photo + ":" + this.state.flippedCards[1].photo)
-      if(this.state.flippedCards[0].photo === this.state.flippedCards[1].photo) {
-      	console.log("Yay")
-      	let filteredCards = this.state.cards.filter(card => card.src !== this.state.flippedCards[0].photo)
+      if(this.state.flippedCards[0].src === this.state.flippedCards[1].src) {
+      	console.log()
+      	let filteredCards = this.state.cards.filter(card => card.src !== this.state.flippedCards[0].src)
       	this.setState({cards: filteredCards, flippedCards: []})
       } else {
         setTimeout(() => {
@@ -47,16 +46,25 @@ export default class Game extends React.Component {
     }
   }
 
+  restart = () => {
+  	this.setState({cards: this.duplicatedAndShuffledCards(), flippedCards: []})
+  }
+
   render() {
     return (
       <div>
-        {this.state.cards.map(card => (
-          <Card
-          	key={card.id}
-            canFlip={this.state.flippedCards.length < 2}
-            onFlip={this.handleCardFlip}
-            photo={card.src} />
-        ))}
+        <div>
+          {this.state.cards.map(card => (
+            <Card
+          	  key={card.id}
+              canFlip={this.state.flippedCards.length < 2}
+              onFlip={this.handleCardFlip}
+              src={card.src} />
+          ))}
+        </div>
+        <div>
+          <button onClick={this.restart}>Restart game</button>
+        </div>
       </div>
     )
   }

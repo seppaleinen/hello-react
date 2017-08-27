@@ -10,7 +10,7 @@ export default class Card extends React.Component {
   handleClick = () => {
     if (this.props.canFlip) {
       this.setState({ flipped: true })
-      this.props.onFlip(this.props.photo, this.handleUnflipRequest)
+      this.props.onFlip(this.props.src, this.handleUnflipRequest)
     }
   }
 
@@ -25,7 +25,7 @@ export default class Card extends React.Component {
         onClick={this.handleClick}>
         <div
           className={classNames("image", { flipped: this.state.flipped })}
-          style={{ backgroundImage: `url(${this.props.photo})` }} />
+          style={{ backgroundImage: `url(${this.props.src})` }} />
       </div>
     )
   }

@@ -15,5 +15,5 @@ export default array => {
         array[index] = temp;
     }
 
-    return array.map(photo => ({id: photo + Math.random(), src: photo}))
+    return array.map(src => ({id: src + Math.random(), src: src}))
 }
