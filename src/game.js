@@ -35,24 +35,23 @@ export default class Game extends React.Component {
       const firstCard = this.state.flippedCards[0]
       const secondCard = this.state.flippedCards[1]
       if(firstCard.id === secondCard.id) {
-      	console.log("Elseif")
-      	          this.state.flippedCards.forEach(card => {
-            card.unflipCallback()
-          })
+      	this.state.flippedCards.forEach(card => {
+          card.unflipCallback()
+        })
       	this.setState({flippedCards: []})
-      } else if(firstCard.src === secondCard.src) {
-      	setTimeout(() => {
-      	  let filteredCards = this.state.cards.filter(card => card.src !== firstCard.src)
-      	  this.setState({cards: filteredCards, flippedCards: []})
-      	}, 1000)
       } else {
-        setTimeout(() => {
-          this.state.flippedCards.forEach(card => {
-            card.unflipCallback()
-          })
-          this.setState({ flippedCards: [] })
-        }, 1000)
-      }
+      	setTimeout(() => {
+      	  if(firstCard.src === secondCard.src) {
+      	    let filteredCards = this.state.cards.filter(card => card.src !== firstCard.src)
+      	    this.setState({cards: filteredCards, flippedCards: []})
+          } else {
+            this.state.flippedCards.forEach(card => {
+              card.unflipCallback()
+            })
+            this.setState({ flippedCards: [] })
+          }
+      	}, 1000)
+      } 
     }
   }
 
