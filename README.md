@@ -23,4 +23,6 @@ create-react-app {projectname}
 npm install
 
 npm start
+
+npm run build && yarn global add serve && serve -s build
 ```
