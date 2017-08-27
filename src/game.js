@@ -77,7 +77,7 @@ export default class Game extends React.Component {
   gameWon = () => {
   	return (
   			<div>
-  				Go home youre drunk
+  				Go home youre drunk! This many moves: 
   				{
   					this.state.flipCount
   				}
