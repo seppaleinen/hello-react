@@ -2,6 +2,9 @@
 
 Simple game to try out reactjs
 
+https://helloreact.now.sh/
+
+
 ### Rules:
 
 * A number of cards are face down on the page
@@ -27,4 +30,3 @@ npm start
 npm run build && yarn global add serve && serve -s build
 ```
 
-https://helloreact.now.sh/
